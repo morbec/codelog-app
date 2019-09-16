@@ -18,6 +18,20 @@ export const getAllCodelogs = (): [Codelog] | [] => {
   return localData ? JSON.parse(localData) : []
 }
 
+//TODO: implement this function
+export const getCodelogById = (id: number): Codelog | Error => {
+  const codelogs = getAllCodelogs()
+
+  if (!codelogs) throw Error('Database is empty')
+
+  const codelogIndex = codelogs.findIndex((codelog) => codelog.id == id)
+  if (codelogIndex == -1) {
+    return Error('id not found')
+  }
+
+  return codelogs[codelogIndex]
+}
+
 /**
  * Add a new codelog to the array of codelogs and store the array in the localStorage
  * @param codelog - A new codelog to be added to the array of codelogs
@@ -38,9 +52,11 @@ export const editCodelog = (id: number, codelog: Codelog): Error | Codelog => {
 
   if (!codelogs) return Error('Database is empty')
 
-  const { title, date, tasks, blockers, todayILearned } = codelog
-  const updatedCodelog: Codelog = { id, title, date, tasks, blockers, todayILearned }
   const codelogIndex = codelogs.findIndex((codelog) => codelog.id == id)
+  if (codelogIndex == -1) return Error('Id not found')
+
+  const { title, date, tasks, blockers, todayILearned } = codelog
+  const updatedCodelog: Codelog = { id, date, title, tasks, blockers, todayILearned }
   codelogs[codelogIndex] = updatedCodelog
   saveCodelog([...codelogs])
   return updatedCodelog
@@ -48,8 +64,11 @@ export const editCodelog = (id: number, codelog: Codelog): Error | Codelog => {
 
 export const deleteCodelog = (id: number): Error | Codelog => {
   const codelogs = getAllCodelogs()
+
+  if (!codelogs) return Error('Database is empty')
+
   const codelogIndex = codelogs.findIndex((codelog) => codelog.id == id)
-  if (codelogIndex == -1) return Error('id not found in the database')
+  if (codelogIndex == -1) return Error('id not found')
 
   const deletedCodelog = codelogs.splice(codelogIndex, 1)
   saveCodelog([...codelogs])
