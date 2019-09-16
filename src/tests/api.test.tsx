@@ -1,28 +1,28 @@
 import * as api from '../api'
 import Codelog from '../types/codelog'
 
-const codelogs: Codelog[] = [
-  {
-    id: 1,
-    date: new Date(),
-    title: 'here comes the title',
-    tasks: 'Write the API, document it, write tests',
-    blockers: "Don't know how to document TypeScript project"
-  },
-  {
-    id: 2,
-    date: new Date(),
-    title: 'Other title',
-    tasks: 'Write more tests...'
-  }
-]
-
 test('when the app runs for the first time, api returns an empty array', () => {
   const codelogs = api.getAllCodelogs()
   expect(codelogs.length).toBe(0)
 })
 
 describe('CRUD', () => {
+  const codelogs: Codelog[] = [
+    {
+      id: 1,
+      date: new Date(),
+      title: 'here comes the title',
+      tasks: 'Write the API, document it, write tests',
+      blockers: "Don't know how to document TypeScript project"
+    },
+    {
+      id: 2,
+      date: new Date(),
+      title: 'Other title',
+      tasks: 'Write more tests...'
+    }
+  ]
+
   test('add new codelog', () => {
     api.addNewCodelog(codelogs[0])
     const logs = api.getAllCodelogs()
