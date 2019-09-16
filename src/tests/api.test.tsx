@@ -56,7 +56,7 @@ describe('CRUD', () => {
     expect(JSON.stringify(codelog)).toBe(JSON.stringify(editedCodelog))
   })
 
-  test('edit codelog with wrong id whould fail', () => {
+  test('edit codelog with wrong id whould return an Error', () => {
     const codelog: Codelog = {
       id: 1,
       date: codelogs[0].date,
@@ -68,7 +68,7 @@ describe('CRUD', () => {
     expect(editedCodelog).toBeInstanceOf(Error)
   })
 
-  test('get codelog by id should fail with an empty localStorage', () => {
+  test('get codelog by id should return an Error when the localStorage is empty', () => {
     localStorage.clear()
     const log = api.getCodelogById(11)
     expect(log).toBeInstanceOf(Error)
@@ -85,8 +85,15 @@ describe('CRUD', () => {
     const logs = api.getAllCodelogs()
     expect(logs.length).toBe(1)
   })
-})
 
-// TODO:
-// 1. delete
-// 2. getCodelogById
+  test('delete codelog with wrong id should return an Error', () => {
+    const deletedCodelog = api.deleteCodelog(13)
+    expect(deletedCodelog).toBeInstanceOf(Error)
+  })
+
+  test('delete codelog with empty storage shoudl return an Error', () => {
+    localStorage.clear()
+    const deletedCodelog = api.deleteCodelog(13)
+    expect(deletedCodelog).toBeInstanceOf(Error)
+  })
+})
