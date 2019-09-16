@@ -18,7 +18,11 @@ export const getAllCodelogs = (): [Codelog] | [] => {
   return localData ? JSON.parse(localData) : []
 }
 
-//TODO: implement this function
+/**
+ * Get a codelog by its id
+ * @param id Codelog's id
+ * @returns Codelog | Error - If a codelog is found or Error in case the database is empty or the id does not exist
+ */
 export const getCodelogById = (id: number): Codelog | Error => {
   const codelogs = getAllCodelogs()
 
@@ -45,7 +49,7 @@ export const addNewCodelog = (codelog: Codelog): void => {
  * Edit a codelog
  * @param id - The id of the codelog to be edited
  * @param codelog - a codelog object containing the new data
- * @returns codelog | Error - The edited codelog or Error in case the id was not found
+ * @returns codelog | Error - The edited codelog or Error if the id was not found or the localStorage is empty
  */
 export const editCodelog = (id: number, codelog: Codelog): Error | Codelog => {
   const codelogs = getAllCodelogs()
@@ -62,6 +66,11 @@ export const editCodelog = (id: number, codelog: Codelog): Error | Codelog => {
   return updatedCodelog
 }
 
+/**
+ * Delete a codelog
+ * @param id Codelog's id
+ * @returns Codelog | Error - The deleted Codelog or Error if the id was not found or if the localStorage is empty
+ */
 export const deleteCodelog = (id: number): Error | Codelog => {
   const codelogs = getAllCodelogs()
 
