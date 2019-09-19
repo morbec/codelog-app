@@ -1,11 +1,18 @@
 import Codelog from '../types/codelog'
 
 /**
+ * Clear the localStorage
+ */
+export const clear = () => {
+  localStorage.clear()
+}
+
+/**
  * Save the codelogs array in the localStorage
  * @param codelogs - Array containing the codelogs
  */
 const saveCodelog = (codelogs: Codelog[]) => {
-  localStorage.clear()
+  // clear()
   localStorage.setItem('codelogs', JSON.stringify(codelogs))
 }
 
@@ -28,8 +35,8 @@ export const getCodelogById = (id: number): Codelog | Error => {
 
   if (!codelogs) throw Error('Database is empty')
 
-  const codelogIndex = codelogs.findIndex((codelog) => codelog.id == id)
-  if (codelogIndex == -1) {
+  const codelogIndex = codelogs.findIndex((codelog) => codelog.id === id)
+  if (codelogIndex === -1) {
     return Error('id not found')
   }
 
@@ -56,8 +63,8 @@ export const editCodelog = (id: number, codelog: Codelog): Error | Codelog => {
 
   if (!codelogs) return Error('Database is empty')
 
-  const codelogIndex = codelogs.findIndex((codelog) => codelog.id == id)
-  if (codelogIndex == -1) return Error('Id not found')
+  const codelogIndex = codelogs.findIndex((codelog) => codelog.id === id)
+  if (codelogIndex === -1) return Error('Id not found')
 
   const { title, date, tasks, blockers, todayILearned } = codelog
   const updatedCodelog: Codelog = { id, date, title, tasks, blockers, todayILearned }
@@ -76,8 +83,8 @@ export const deleteCodelog = (id: number): Error | Codelog => {
 
   if (!codelogs) return Error('Database is empty')
 
-  const codelogIndex = codelogs.findIndex((codelog) => codelog.id == id)
-  if (codelogIndex == -1) return Error('id not found')
+  const codelogIndex = codelogs.findIndex((codelog) => codelog.id === id)
+  if (codelogIndex === -1) return Error('id not found')
 
   const deletedCodelog = codelogs.splice(codelogIndex, 1)
   saveCodelog([...codelogs])
