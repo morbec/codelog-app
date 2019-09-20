@@ -3,7 +3,7 @@ import Codelog from '../types/codelog'
 /**
  * Clear the localStorage
  */
-export const clear = () => {
+export const deleteAll = () => {
   localStorage.clear()
 }
 
@@ -12,7 +12,7 @@ export const clear = () => {
  * @param codelogs - Array containing the codelogs
  */
 const saveCodelog = (codelogs: Codelog[]) => {
-  // clear()
+  // deleteAll()
   localStorage.setItem('codelogs', JSON.stringify(codelogs))
 }
 
