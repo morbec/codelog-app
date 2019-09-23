@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-// import { deleteAll, deleteCodelog, getAllCodelogs } from '../../api'
-// addNewCodelog, deleteCodelog, deleteAll, editCodelog, getAllCodelogs, getCodelogById
 import {
   ADD_NEW_CODELOG,
   ALL_CODELOGS,
@@ -11,9 +9,6 @@ import {
   EDIT_CODELOG,
   GET_CODELOG_BY_ID
 } from './types'
-
-// initialState
-// const initialState = { codelogs: [...getAllCodelogs()] }
 
 export const addNewCodelog = (newCodelog: Codelog): CodelogActionTypes => {
   return {
@@ -56,26 +51,3 @@ export const getCodelogById = (id: number): CodelogActionTypes => {
     payload: id
   }
 }
-
-//#region CodelogReducer
-/* 
-const CodelogReducer = (state: StateType, action: CodelogActionTypes) => {
-  switch (action.type) {
-    case ALL_CODELOGS:
-      return { codelogs: [...getAllCodelogs()] }
-    case DELETE_ALL:
-      deleteAll()
-      return { codelogs: [] }
-    case DELETE_CODELOG: {
-      const id = action.payload
-      deleteCodelog(id)
-      return { codelogs: [...getAllCodelogs()] }
-    }
-    default:
-      return state
-  }
-}
-
-export default CodelogReducer
-*/
-//#endregion
