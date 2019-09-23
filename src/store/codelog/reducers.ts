@@ -15,7 +15,7 @@ const initialState: CodelogState = {
   codelogs: []
 }
 
-export const chatReducer = (state = initialState, action: CodelogActionTypes): CodelogState => {
+export const codelogReducer = (state = initialState, action: CodelogActionTypes): CodelogState => {
   switch (action.type) {
     case ADD_NEW_CODELOG: {
       const newCodelog = api.addNewCodelog(action.payload)
