@@ -17,7 +17,7 @@ export const addNewCodelog = (newCodelog: Codelog): CodelogActionTypes => {
   }
 }
 
-export const all = (): CodelogActionTypes => {
+export const allCodelogs = (): CodelogActionTypes => {
   return {
     type: ALL_CODELOGS,
     payload: null
