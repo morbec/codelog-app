@@ -8,6 +8,10 @@ export type Codelog = {
   todayILearned?: string
 }
 
+export type ApiType = {
+  codelogs: Codelog[]
+}
+
 export type CodelogState = {
   codelogs: Codelog[]
 }
