@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
-import { Codelog } from '../store/codelog/types'
+import { ApiType, Codelog } from '../store/codelog/types'
 
 // private
 const saveCodelog = (codelogs: Codelog[]) => {
   // deleteAll()
-  localStorage.setItem('codelogs', JSON.stringify(codelogs))
+  const data: ApiType = { codelogs }
+  localStorage.setItem('codelogs', JSON.stringify(data))
 }
 
 const generateId = (): number => {
@@ -16,38 +16,33 @@ const generateId = (): number => {
 }
 
 // public
-
-export const deleteAll = () => {
-  localStorage.clear()
-}
-
-export const getAllCodelogs = (): Codelog[] | [] => {
-  const localData = localStorage.getItem('codelogs')
-  return localData ? JSON.parse(localData) : []
-}
-
-export const getCodelogById = (id: number): Codelog => {
-  const codelogs = getAllCodelogs()
-
-  if (!codelogs) throw new Error('Database is empty')
-
-  const codelogIndex = codelogs.findIndex((codelog) => codelog.id === id)
-  if (codelogIndex === -1) {
-    throw new Error('id not found')
-  }
-
-  return codelogs[codelogIndex]
-}
-
 export const addNewCodelog = (codelog: Codelog): Codelog => {
-  const codelogs = getAllCodelogs()
+  const codelogs = getAllCodelogs().codelogs
   codelog.id = generateId()
   saveCodelog([...codelogs, codelog])
   return codelog
 }
 
+export const deleteAll = () => {
+  localStorage.clear()
+}
+
+export const deleteCodelog = (id: number) => {
+  const codelogs = getAllCodelogs().codelogs
+
+  // if (codelogs.length === 0) throw new Error('Database is empty')
+  if (!codelogs) throw new Error('Database is empty')
+
+  const codelogIndex = codelogs.findIndex((codelog) => codelog.id === id)
+  if (codelogIndex === -1) throw new Error('id not found')
+
+  codelogs.splice(codelogIndex, 1)
+  saveCodelog([...codelogs])
+  return [...codelogs]
+}
+
 export const editCodelog = (codelog: Codelog): Codelog => {
-  const codelogs = getAllCodelogs()
+  const codelogs = getAllCodelogs().codelogs
 
   if (!codelogs) throw new Error('Database is empty')
 
@@ -59,15 +54,20 @@ export const editCodelog = (codelog: Codelog): Codelog => {
   return codelogs[codelogIndex]
 }
 
-export const deleteCodelog = (id: number) => {
-  const codelogs = getAllCodelogs()
+export const getAllCodelogs = (): ApiType => {
+  const localData = localStorage.getItem('codelogs')
+  return localData ? JSON.parse(localData) : { codelogs: [] }
+}
 
-  if (codelogs.length === 0) throw new Error('Database is empty')
+export const getCodelogById = (id: number): Codelog => {
+  const codelogs = getAllCodelogs().codelogs
+
+  if (!codelogs) throw new Error('Database is empty')
 
   const codelogIndex = codelogs.findIndex((codelog) => codelog.id === id)
-  if (codelogIndex === -1) throw new Error('id not found')
+  if (codelogIndex === -1) {
+    throw new Error('id not found')
+  }
 
-  const deletedCodelog = codelogs.splice(codelogIndex, 1)
-  saveCodelog([...codelogs])
-  return [...codelogs]
+  return codelogs[codelogIndex]
 }
