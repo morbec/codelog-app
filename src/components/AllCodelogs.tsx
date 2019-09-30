@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import * as api from '../api'
 import { ApiType, Codelog, CodelogState } from '../store/codelog/types'
 
+//#region reducer stuff
 const ALL_CODELOGS = 'ALL_CODELOGS'
 const ADD_NEW_CODELOG = 'ADD_NEW_CODELOG'
 const DELETE_ALL_CODELOGS = 'DELETE_ALL_CODELOGS'
@@ -43,6 +44,7 @@ const codelogReducer = (state: CodelogState, action: ActionTypes) => {
       return state
   }
 }
+//#endregion
 
 const initialState: ApiType = { codelogs: [] }
 
