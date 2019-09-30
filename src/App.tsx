@@ -1,13 +1,15 @@
 import React from 'react'
 import AllCodelogs from './components/AllCodelogs'
-import Title from './components/Title'
+import Navbar from './components/Navbar'
 
 const App: React.FC = () => {
   return (
-    <div className="container">
-      <Title>Codelogs</Title>
-      <AllCodelogs />
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <AllCodelogs />
+      </div>
+    </>
   )
 }
 
