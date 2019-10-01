@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react'
 import * as api from '../api'
 import { ApiType, Codelog, CodelogState } from '../store/codelog/types'
+import CodelogItem from './CodelogItem'
 
 //#region reducer stuff
 const ALL_CODELOGS = 'ALL_CODELOGS'
@@ -54,11 +55,9 @@ const AllCodelogs = (): JSX.Element => {
 
   return (
     <div>
-      <ul>
-        {state.codelogs.map((codelog) => (
-          <li key={codelog.id}>{codelog.title}</li>
-        ))}
-      </ul>
+      {state.codelogs.map((codelog) => (
+        <CodelogItem key={codelog.id} codelog={codelog} />
+      ))}
     </div>
   )
 }
