@@ -1,3 +1,4 @@
+import Container from '@material-ui/core/Container'
 import React from 'react'
 import AllCodelogs from './components/AllCodelogs'
 import Navbar from './components/Navbar'
@@ -5,10 +6,10 @@ import Navbar from './components/Navbar'
 const App: React.FC = () => {
   return (
     <>
-      <Navbar />
-      <div className="container">
+      <Container>
+        <Navbar />
         <AllCodelogs />
-      </div>
+      </Container>
     </>
   )
 }
