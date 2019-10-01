@@ -19,16 +19,16 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const Navbar = styled(AppBar)({
+const NavbarStyled = styled(AppBar)({
   backgroundColor: '#FE6B8B'
 })
 
-export default function ButtonAppBar() {
+export default function Navbar() {
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
-      <Navbar position="static">
+      <NavbarStyled position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Codelogs
@@ -38,7 +38,7 @@ export default function ButtonAppBar() {
           </IconButton>
           {/* <Button color="inherit">Add</Button> */}
         </Toolbar>
-      </Navbar>
+      </NavbarStyled>
     </div>
   )
 }
