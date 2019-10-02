@@ -9,7 +9,7 @@ import {
   IconButton,
   Typography
 } from '@material-ui/core/'
-import { red } from '@material-ui/core/colors'
+import { green, red } from '@material-ui/core/colors'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
@@ -70,7 +70,12 @@ const CodelogItem = ({ codelog }: { codelog: Codelog }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Fab color="primary" className={classes.fab} aria-label="Edit codelog">
+        <Fab
+          color="primary"
+          style={{ backgroundColor: green[500] }}
+          className={classes.fab}
+          aria-label="Edit codelog"
+        >
           <EditIcon />
         </Fab>
         <Fab color="secondary" className={classes.fab} aria-label="Delete codelog">

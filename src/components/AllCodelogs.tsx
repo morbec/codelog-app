@@ -1,7 +1,10 @@
+import { Container } from '@material-ui/core/'
 import React, { useReducer } from 'react'
 import * as api from '../api'
 import { ApiType, Codelog, CodelogState } from '../store/codelog/types'
+import AddButton from './AddButton'
 import CodelogItem from './CodelogItem'
+import Navbar from './Navbar'
 
 //#region reducer stuff
 const ALL_CODELOGS = 'ALL_CODELOGS'
@@ -53,11 +56,21 @@ const AllCodelogs = (): JSX.Element => {
   // eslint-disable-next-line
   const [state, dispatch] = useReducer(codelogReducer, initialState, () => api.getAllCodelogs())
 
+  const handleAddClick = () => {
+    // TODO:
+    // eslint-disable-next-line
+    console.log('yay!')
+  }
+
   return (
     <div>
-      {state.codelogs.map((codelog) => (
-        <CodelogItem key={codelog.id} codelog={codelog} />
-      ))}
+      <Container>
+        <Navbar />
+        {state.codelogs.map((codelog) => (
+          <CodelogItem key={codelog.id} codelog={codelog} />
+        ))}
+      </Container>
+      <AddButton handleClick={handleAddClick} />
     </div>
   )
 }

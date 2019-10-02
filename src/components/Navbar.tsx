@@ -1,6 +1,7 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core/'
+// import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core/'
+import { AppBar, Toolbar, Typography } from '@material-ui/core/'
 import { createStyles, makeStyles, styled, Theme } from '@material-ui/core/styles'
-import Add from '@material-ui/icons/Add'
+// import Add from '@material-ui/icons/Add'
 import React from 'react'
 
 // const useStyles = makeStyles((theme: Theme) =>
@@ -33,9 +34,9 @@ export default function Navbar() {
           <Typography variant="h6" className={classes.title}>
             Codelogs
           </Typography>
-          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="add">
-            <Add />
-          </IconButton>
+          {/* <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="add">
+            <Add onClick={() => handleAddClick()} />
+          </IconButton> */}
           {/* <Button color="inherit">Add</Button> */}
         </Toolbar>
       </NavbarStyled>
