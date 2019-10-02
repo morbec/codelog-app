@@ -67,10 +67,10 @@ const CodelogItem = ({ codelog }: { codelog: Codelog }) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Edit codelog">
-          <EditIcon />
+          <EditIcon color="primary" />
         </IconButton>
-        <IconButton aria-label="Edit codelog">
-          <DeleteIcon />
+        <IconButton aria-label="Delete codelog">
+          <DeleteIcon color="error" />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, { [classes.expandOpen]: expanded })}
