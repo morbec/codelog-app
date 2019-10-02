@@ -5,6 +5,7 @@ import {
   CardContent,
   CardHeader,
   Collapse,
+  Fab,
   IconButton,
   Typography
 } from '@material-ui/core/'
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     expandOpen: {
       transform: 'rotate(180deg)'
+    },
+    fab: {
+      margin: theme.spacing(1)
     }
   })
 )
@@ -66,12 +70,12 @@ const CodelogItem = ({ codelog }: { codelog: Codelog }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Edit codelog">
-          <EditIcon color="primary" />
-        </IconButton>
-        <IconButton aria-label="Delete codelog">
-          <DeleteIcon color="error" />
-        </IconButton>
+        <Fab color="primary" className={classes.fab} aria-label="Edit codelog">
+          <EditIcon />
+        </Fab>
+        <Fab color="secondary" className={classes.fab} aria-label="Delete codelog">
+          <DeleteIcon />
+        </Fab>
         <IconButton
           className={clsx(classes.expand, { [classes.expandOpen]: expanded })}
           onClick={handleExpandClick}
