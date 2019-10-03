@@ -8,6 +8,8 @@ import {
 } from '@material-ui/core/'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
+import { generateId } from '../api'
+import { Codelog } from '../store/codelog/types'
 
 const CodelogDialog = ({ display, setDisplayDialog }) => {
   const [open, setOpen] = useState(display)
@@ -18,16 +20,9 @@ const CodelogDialog = ({ display, setDisplayDialog }) => {
     todayILearned: ''
   })
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  //   const { name, value } = e.currentTarget
-  //   console.log('value', value)
-  //   setState({ ...state, state[name]: value })
-  // }
-
   const handleSave = () => {
     // TODO:
-    // const { title, tasks, blockers, todayILearned } = state
-    // const codelog: Codelog =  { ...state }
+    const codelog: Codelog = { id: generateId(), date: new Date(), ...state }
     setOpen(false)
     setDisplayDialog(false)
   }
@@ -52,7 +47,6 @@ const CodelogDialog = ({ display, setDisplayDialog }) => {
           type="text"
           value={state.title}
           onChange={(e) => setState({ ...state, title: e.currentTarget.value })}
-          // onChange={(e) => handleChange(e)}
         />
         <TextField
           required
