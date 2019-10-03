@@ -7,7 +7,8 @@ const saveCodelog = (codelogs: Codelog[]) => {
   localStorage.setItem('codelogs', JSON.stringify(data))
 }
 
-const generateId = (): number => {
+// public
+export const generateId = (): number => {
   return parseInt(
     Math.random()
       .toString()
@@ -15,10 +16,8 @@ const generateId = (): number => {
   )
 }
 
-// public
 export const addNewCodelog = (codelog: Codelog): Codelog => {
   const codelogs = getAllCodelogs().codelogs
-  codelog.id = generateId()
   saveCodelog([...codelogs, codelog])
   return codelog
 }
