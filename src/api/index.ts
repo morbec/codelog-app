@@ -1,9 +1,9 @@
-import { ApiType, Codelog } from '../types'
+import { Codelog, Codelogs } from '../types'
 
 // private
 const saveCodelog = (codelogs: Codelog[]) => {
   // deleteAll()
-  const data: ApiType = { codelogs }
+  const data: Codelogs = { codelogs }
   localStorage.setItem('codelogs', JSON.stringify(data))
 }
 
@@ -53,7 +53,7 @@ export const editCodelog = (codelog: Codelog): Codelog => {
   return codelogs[codelogIndex]
 }
 
-export const getAllCodelogs = (): ApiType => {
+export const getAllCodelogs = (): Codelogs => {
   const localData = localStorage.getItem('codelogs')
   return localData ? JSON.parse(localData) : { codelogs: [] }
 }

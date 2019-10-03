@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core/'
 import React, { useReducer } from 'react'
 import * as api from '../api'
-import { ApiType, Codelog, CodelogState } from '../types'
+import { Codelog, Codelogs } from '../types'
 import AddButton from './AddButton'
 import CodelogItem from './CodelogItem'
 import Navbar from './Navbar'
@@ -32,7 +32,7 @@ type DeleteCodelogType = {
 
 type ActionTypes = AllCodelogType | AddNewCodelogType | DeleteAllCodelogsType | DeleteCodelogType
 
-const codelogReducer = (state: CodelogState, action: ActionTypes) => {
+const codelogReducer = (state: Codelogs, action: ActionTypes) => {
   switch (action.type) {
     case ALL_CODELOGS:
       return Object.assign({}, state, { codelogs: [...state.codelogs] })
@@ -50,7 +50,7 @@ const codelogReducer = (state: CodelogState, action: ActionTypes) => {
 }
 //#endregion
 
-const initialState: ApiType = { codelogs: [] }
+const initialState: Codelogs = { codelogs: [] }
 
 const AllCodelogs = (): JSX.Element => {
   // eslint-disable-next-line
