@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { generateId } from '../api'
-import { Codelog } from '../store/codelog/types'
+import { Codelog } from '../types'
 
 const CodelogDialog = ({ display, setDisplayDialog }) => {
   const [open, setOpen] = useState(display)

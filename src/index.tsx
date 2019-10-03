@@ -4,7 +4,7 @@ import * as api from './api/index'
 import App from './App'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
-import { Codelog } from './store/codelog/types'
+import { Codelog } from './types'
 
 let tests: Codelog[] = [
   {

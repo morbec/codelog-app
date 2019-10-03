@@ -16,7 +16,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import React from 'react'
-import { Codelog } from '../store/codelog/types'
+import { Codelog } from '../types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

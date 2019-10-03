@@ -1,4 +1,4 @@
-import { ApiType, Codelog } from '../store/codelog/types'
+import { ApiType, Codelog } from '../types'
 
 // private
 const saveCodelog = (codelogs: Codelog[]) => {

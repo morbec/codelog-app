@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core/'
 import React, { useReducer } from 'react'
 import * as api from '../api'
-import { ApiType, Codelog, CodelogState } from '../store/codelog/types'
+import { ApiType, Codelog, CodelogState } from '../types'
 import AddButton from './AddButton'
 import CodelogItem from './CodelogItem'
 import Navbar from './Navbar'

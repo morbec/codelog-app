@@ -1,5 +1,5 @@
-import { Codelog } from '../../src/store/codelog/types'
 import * as api from '../api'
+import { Codelog } from '../types'
 
 test('when the app runs for the first time, api returns an empty array', () => {
   const codelogs = api.getAllCodelogs()
