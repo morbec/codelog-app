@@ -36,12 +36,9 @@ const codelogReducer = (state: Codelogs, action: ActionTypes) => {
   switch (action.type) {
     case ALL_CODELOGS:
       return Object.assign({}, state, { codelogs: [...state.codelogs] })
-    case ADD_NEW_CODELOG: {
-      const newCodelog = api.addNewCodelog(action.payload)
-      return { codelogs: [...state.codelogs, newCodelog] }
-    }
+    case ADD_NEW_CODELOG:
+      return { codelogs: [...state.codelogs, action.payload] }
     case DELETE_CODELOG:
-      api.deleteCodelog(action.payload)
       return Object.assign({}, state, {
         codelogs: [...state.codelogs.filter((codelog) => codelog.id !== action.payload)]
       })
@@ -57,10 +54,12 @@ const AllCodelogs = (): JSX.Element => {
   const [state, dispatch] = useReducer(codelogReducer, initialState, () => api.getAllCodelogs())
 
   const handleAddClick = (codelog: Codelog) => {
-    dispatch({ type: ADD_NEW_CODELOG, payload: codelog })
+    const newCodelog = api.addNewCodelog(codelog)
+    dispatch({ type: ADD_NEW_CODELOG, payload: newCodelog })
   }
 
   const handleDeleteClick = (id: number) => {
+    api.deleteCodelog(id)
     dispatch({ payload: id, type: DELETE_CODELOG })
   }
 
