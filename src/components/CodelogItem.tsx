@@ -78,8 +78,13 @@ const CodelogItem = ({ codelog, handleDeleteClick }) => {
         >
           <EditIcon />
         </Fab>
-        <Fab color="secondary" className={classes.fab} aria-label="Delete codelog">
-          <DeleteIcon onClick={() => handleDeleteClick(id)} />
+        <Fab
+          color="secondary"
+          className={classes.fab}
+          aria-label="Delete codelog"
+          onClick={() => handleDeleteClick(id)}
+        >
+          <DeleteIcon />
         </Fab>
         <IconButton
           className={clsx(classes.expand, { [classes.expandOpen]: expanded })}
