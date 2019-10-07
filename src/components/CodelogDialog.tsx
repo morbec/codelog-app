@@ -11,7 +11,7 @@ import React, { useState } from 'react'
 import { generateId } from '../api'
 import { Codelog } from '../types'
 
-const CodelogDialog = ({ display, setDisplayDialog }) => {
+const CodelogDialog = ({ display, setDisplayDialog, handleClick }) => {
   const [open, setOpen] = useState(display)
   const [state, setState] = useState({
     title: '',
@@ -21,8 +21,8 @@ const CodelogDialog = ({ display, setDisplayDialog }) => {
   })
 
   const handleSave = () => {
-    // TODO:
-    const codelog: Codelog = { id: generateId(), date: new Date(), ...state }
+    const codelog: Codelog = { ...state, id: generateId(), date: new Date().toString() }
+    handleClick(codelog)
     setOpen(false)
     setDisplayDialog(false)
   }
@@ -99,7 +99,8 @@ const CodelogDialog = ({ display, setDisplayDialog }) => {
 }
 CodelogDialog.propTypes = {
   display: PropTypes.bool.isRequired,
-  setDisplayDialog: PropTypes.func.isRequired
+  setDisplayDialog: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired
 }
 
 export default CodelogDialog

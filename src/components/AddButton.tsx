@@ -32,7 +32,11 @@ export default function AddButton({ handleClick }) {
           <Add onClick={handleButtonClick} />
         </Fab>
         {displayDialog && (
-          <CodelogDialog display={displayDialog} setDisplayDialog={setDisplayDialog} />
+          <CodelogDialog
+            display={displayDialog}
+            setDisplayDialog={setDisplayDialog}
+            handleClick={handleClick}
+          />
         )}
       </div>
     </React.Fragment>

@@ -36,10 +36,10 @@ const codelogReducer = (state: Codelogs, action: ActionTypes) => {
   switch (action.type) {
     case ALL_CODELOGS:
       return Object.assign({}, state, { codelogs: [...state.codelogs] })
-    case ADD_NEW_CODELOG:
-      return Object.assign({}, state, {
-        codelogs: [...state.codelogs, action.payload]
-      })
+    case ADD_NEW_CODELOG: {
+      const newCodelog = api.addNewCodelog(action.payload)
+      return { codelogs: [...state.codelogs, newCodelog] }
+    }
     case DELETE_CODELOG:
       return Object.assign({}, state, {
         codelogs: [...state.codelogs.filter((codelog) => codelog.id !== action.payload)]
@@ -53,13 +53,10 @@ const codelogReducer = (state: Codelogs, action: ActionTypes) => {
 const initialState: Codelogs = { codelogs: [] }
 
 const AllCodelogs = (): JSX.Element => {
-  // eslint-disable-next-line
   const [state, dispatch] = useReducer(codelogReducer, initialState, () => api.getAllCodelogs())
 
-  const handleAddClick = () => {
-    // TODO:
-    // eslint-disable-next-line
-    console.log('yay!')
+  const handleAddClick = (codelog: Codelog) => {
+    dispatch({ type: ADD_NEW_CODELOG, payload: codelog })
   }
 
   return (

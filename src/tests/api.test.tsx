@@ -10,14 +10,14 @@ describe('CRUD', () => {
   const codelogs: Codelog[] = [
     {
       id: 0,
-      date: new Date(),
+      date: new Date().toString(),
       title: 'here comes the title',
       tasks: 'Write the API, document it, write tests',
       blockers: "Don't know how to document TypeScript project"
     },
     {
       id: 1,
-      date: new Date(),
+      date: new Date().toString(),
       title: 'Other title',
       tasks: 'Write more tests...'
     }

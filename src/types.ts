@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 export type Codelog = {
   id: number
-  date: Date
+  date: string
   title: string
   tasks: string
   blockers?: string
