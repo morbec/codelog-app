@@ -28,7 +28,7 @@ export default function AddButton({ handleClick }) {
   return (
     <React.Fragment>
       <div>
-        <Fab color="primary" className={classes.fab} onClick={handleButtonClick} >
+        <Fab color="primary" className={classes.fab} onClick={handleButtonClick}>
           <Add />
         </Fab>
         {displayDialog && (
