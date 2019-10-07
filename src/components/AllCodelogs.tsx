@@ -41,6 +41,7 @@ const codelogReducer = (state: Codelogs, action: ActionTypes) => {
       return { codelogs: [...state.codelogs, newCodelog] }
     }
     case DELETE_CODELOG:
+      api.deleteCodelog(action.payload)
       return Object.assign({}, state, {
         codelogs: [...state.codelogs.filter((codelog) => codelog.id !== action.payload)]
       })
@@ -59,12 +60,16 @@ const AllCodelogs = (): JSX.Element => {
     dispatch({ type: ADD_NEW_CODELOG, payload: codelog })
   }
 
+  const handleDeleteClick = (id: number) => {
+    dispatch({ payload: id, type: DELETE_CODELOG })
+  }
+
   return (
     <div>
       <Container>
         <Navbar />
         {state.codelogs.map((codelog) => (
-          <CodelogItem key={codelog.id} codelog={codelog} />
+          <CodelogItem key={codelog.id} codelog={codelog} handleDeleteClick={handleDeleteClick} />
         ))}
       </Container>
       <AddButton handleClick={handleAddClick} />

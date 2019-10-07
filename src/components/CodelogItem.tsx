@@ -15,8 +15,8 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 import React from 'react'
-import { Codelog } from '../types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const CodelogItem = ({ codelog }: { codelog: Codelog }) => {
-  const { date, title, tasks, blockers, todayILearned } = codelog
+const CodelogItem = ({ codelog, handleDeleteClick }) => {
+  const { id, date, title, tasks, blockers, todayILearned } = codelog
   const [expanded, setExpanded] = React.useState(false)
   const classes = useStyles()
 
@@ -79,7 +79,7 @@ const CodelogItem = ({ codelog }: { codelog: Codelog }) => {
           <EditIcon />
         </Fab>
         <Fab color="secondary" className={classes.fab} aria-label="Delete codelog">
-          <DeleteIcon />
+          <DeleteIcon onClick={() => handleDeleteClick(id)} />
         </Fab>
         <IconButton
           className={clsx(classes.expand, { [classes.expandOpen]: expanded })}
@@ -107,6 +107,17 @@ const CodelogItem = ({ codelog }: { codelog: Codelog }) => {
       </Collapse>
     </Card>
   )
+}
+CodelogItem.propTypes = {
+  codelog: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    tasks: PropTypes.string.isRequired,
+    blockers: PropTypes.string,
+    todayILearned: PropTypes.string
+  }).isRequired,
+  handleDeleteClick: PropTypes.func.isRequired
 }
 
 export default CodelogItem
