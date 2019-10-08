@@ -7,11 +7,10 @@ import {
   TextField
 } from '@material-ui/core/'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { generateId } from '../api'
-import { Codelog } from '../types'
 
-const CodelogDialog = ({ display, setDisplayDialog, handleClick }) => {
+const CodelogDialog = ({ display, setDisplayDialog, handleClick, codelog }) => {
   const [open, setOpen] = useState(display)
   const [state, setState] = useState({
     title: '',
@@ -20,16 +19,22 @@ const CodelogDialog = ({ display, setDisplayDialog, handleClick }) => {
     todayILearned: ''
   })
 
+  useEffect(() => {
+    if (codelog) {
+      setState({ ...codelog })
+    }
+  }, [codelog])
+
   const handleSave = () => {
-    const codelog: Codelog = { ...state, id: generateId(), date: new Date().toString() }
+    codelog = !codelog ? { ...state, id: generateId(), date: new Date().toString() } : { ...state }
     handleClick(codelog)
     setOpen(false)
-    setDisplayDialog(false)
+    if (setDisplayDialog) setDisplayDialog(false)
   }
 
   const handleClose = () => {
     setOpen(false)
-    setDisplayDialog(false)
+    if (setDisplayDialog) setDisplayDialog(false)
   }
 
   return (
@@ -99,8 +104,16 @@ const CodelogDialog = ({ display, setDisplayDialog, handleClick }) => {
 }
 CodelogDialog.propTypes = {
   display: PropTypes.bool.isRequired,
-  setDisplayDialog: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired
+  setDisplayDialog: PropTypes.func,
+  handleClick: PropTypes.func.isRequired,
+  codelog: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    tasks: PropTypes.string.isRequired,
+    blockers: PropTypes.string,
+    todayILearned: PropTypes.string
+  })
 }
 
 export default CodelogDialog

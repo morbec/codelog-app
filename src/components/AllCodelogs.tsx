@@ -11,6 +11,7 @@ const ALL_CODELOGS = 'ALL_CODELOGS'
 const ADD_NEW_CODELOG = 'ADD_NEW_CODELOG'
 const DELETE_ALL_CODELOGS = 'DELETE_ALL_CODELOGS'
 const DELETE_CODELOG = 'DELETE_CODELOG'
+const EDIT_CODELOG = 'EDIT_CODELOG'
 
 type AllCodelogType = {
   type: typeof ALL_CODELOGS
@@ -30,7 +31,17 @@ type DeleteCodelogType = {
   payload: number
 }
 
-type ActionTypes = AllCodelogType | AddNewCodelogType | DeleteAllCodelogsType | DeleteCodelogType
+type EditCodelogType = {
+  type: typeof EDIT_CODELOG
+  payload: Codelog
+}
+
+type ActionTypes =
+  | AllCodelogType
+  | AddNewCodelogType
+  | DeleteAllCodelogsType
+  | DeleteCodelogType
+  | EditCodelogType
 
 const codelogReducer = (state: Codelogs, action: ActionTypes) => {
   switch (action.type) {
@@ -41,6 +52,12 @@ const codelogReducer = (state: Codelogs, action: ActionTypes) => {
     case DELETE_CODELOG:
       return Object.assign({}, state, {
         codelogs: [...state.codelogs.filter((codelog) => codelog.id !== action.payload)]
+      })
+    case EDIT_CODELOG:
+      return Object.assign({}, state, {
+        codelogs: [
+          ...state.codelogs.map((clog) => (clog.id === action.payload.id ? action.payload : clog))
+        ]
       })
     default:
       return state
@@ -63,12 +80,23 @@ const AllCodelogs = (): JSX.Element => {
     dispatch({ payload: id, type: DELETE_CODELOG })
   }
 
+  const handleEditClick = (codelog: Codelog) => {
+    const editedCodelog = api.editCodelog(codelog)
+    dispatch({ payload: editedCodelog, type: EDIT_CODELOG })
+  }
+
   return (
     <div>
       <Container>
         <Navbar />
         {state.codelogs.map((codelog) => (
-          <CodelogItem key={codelog.id} codelog={codelog} handleDeleteClick={handleDeleteClick} />
+          // need to pass the handleEditClick too
+          <CodelogItem
+            key={codelog.id}
+            codelog={codelog}
+            handleDeleteClick={handleDeleteClick}
+            handleEditClick={handleEditClick}
+          />
         ))}
       </Container>
       <AddButton handleClick={handleAddClick} />

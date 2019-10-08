@@ -16,7 +16,8 @@ import EditIcon from '@material-ui/icons/Edit'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
+import CodelogDialog from './CodelogDialog'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,9 +44,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const CodelogItem = ({ codelog, handleDeleteClick }) => {
+const CodelogItem = ({ codelog, handleDeleteClick, handleEditClick }) => {
   const { id, date, title, tasks, blockers, todayILearned } = codelog
-  const [expanded, setExpanded] = React.useState(false)
+  const [expanded, setExpanded] = useState(false)
+  const [editting, setEditting] = useState(false)
   const classes = useStyles()
 
   const handleExpandClick = () => {
@@ -53,64 +55,68 @@ const CodelogItem = ({ codelog, handleDeleteClick }) => {
   }
 
   return (
-    <Card className={classes.card}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="letter" className={classes.avatar}>
-            {title[0].toLocaleUpperCase()}
-          </Avatar>
-        }
-        titleTypographyProps={{ variant: 'h6' }}
-        title={title}
-        subheader={date}
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {tasks}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <Fab
-          color="primary"
-          style={{ backgroundColor: green[500] }}
-          className={classes.fab}
-          aria-label="Edit codelog"
-        >
-          <EditIcon />
-        </Fab>
-        <Fab
-          color="secondary"
-          className={classes.fab}
-          aria-label="Delete codelog"
-          onClick={() => handleDeleteClick(id)}
-        >
-          <DeleteIcon />
-        </Fab>
-        <IconButton
-          className={clsx(classes.expand, { [classes.expandOpen]: expanded })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <React.Fragment>
+      {editting && <CodelogDialog display={true} handleClick={handleEditClick} codelog={codelog} />}
+      <Card className={classes.card}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="letter" className={classes.avatar}>
+              {title[0].toLocaleUpperCase()}
+            </Avatar>
+          }
+          titleTypographyProps={{ variant: 'h6' }}
+          title={title}
+          subheader={date}
+        />
         <CardContent>
-          <Typography variant="h6">Blockers:</Typography>
-          <Typography variant="body1" component="p">
-            {blockers}
-          </Typography>
-          <br />
-          <hr />
-          <br />
-          <Typography variant="h6">Today I learned:</Typography>
-          <Typography variant="body1" component="p">
-            {todayILearned}
+          <Typography variant="body2" color="textSecondary" component="p">
+            {tasks}
           </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <Fab
+            color="primary"
+            style={{ backgroundColor: green[500] }}
+            className={classes.fab}
+            aria-label="Edit codelog"
+            onClick={() => setEditting(!editting)}
+          >
+            <EditIcon />
+          </Fab>
+          <Fab
+            color="secondary"
+            className={classes.fab}
+            aria-label="Delete codelog"
+            onClick={() => handleDeleteClick(id)}
+          >
+            <DeleteIcon />
+          </Fab>
+          <IconButton
+            className={clsx(classes.expand, { [classes.expandOpen]: expanded })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography variant="h6">Blockers:</Typography>
+            <Typography variant="body1" component="p">
+              {blockers}
+            </Typography>
+            <br />
+            <hr />
+            <br />
+            <Typography variant="h6">Today I learned:</Typography>
+            <Typography variant="body1" component="p">
+              {todayILearned}
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </React.Fragment>
   )
 }
 CodelogItem.propTypes = {
@@ -122,7 +128,8 @@ CodelogItem.propTypes = {
     blockers: PropTypes.string,
     todayILearned: PropTypes.string
   }).isRequired,
-  handleDeleteClick: PropTypes.func.isRequired
+  handleDeleteClick: PropTypes.func,
+  handleEditClick: PropTypes.func
 }
 
 export default CodelogItem
