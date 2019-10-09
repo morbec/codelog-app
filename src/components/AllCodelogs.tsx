@@ -1,10 +1,11 @@
 import { Container } from '@material-ui/core/'
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import * as api from '../api'
 import { Codelog, Codelogs } from '../types'
 import AddButton from './AddButton'
 import CodelogItem from './CodelogItem'
 import Navbar from './Navbar'
+import PaginationActions, { ROWS_PER_PAGE } from './PaginationActions'
 
 //#region reducer stuff
 const ALL_CODELOGS = 'ALL_CODELOGS'
@@ -69,6 +70,7 @@ const initialState: Codelogs = { codelogs: [] }
 
 const AllCodelogs = (): JSX.Element => {
   const [state, dispatch] = useReducer(codelogReducer, initialState, () => api.getAllCodelogs())
+  const [page, setPage] = useState(0)
 
   const handleAddClick = (codelog: Codelog) => {
     const newCodelog = api.addNewCodelog(codelog)
@@ -85,19 +87,29 @@ const AllCodelogs = (): JSX.Element => {
     dispatch({ payload: editedCodelog, type: EDIT_CODELOG })
   }
 
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => {
+    setPage(newPage)
+  }
+
   return (
     <div>
       <Container>
         <Navbar />
-        {state.codelogs.map((codelog) => (
-          // need to pass the handleEditClick too
-          <CodelogItem
-            key={codelog.id}
-            codelog={codelog}
-            handleDeleteClick={handleDeleteClick}
-            handleEditClick={handleEditClick}
-          />
-        ))}
+        {state.codelogs
+          .slice(page * ROWS_PER_PAGE, page * ROWS_PER_PAGE + ROWS_PER_PAGE)
+          .map((codelog) => (
+            <CodelogItem
+              key={codelog.id}
+              codelog={codelog}
+              handleDeleteClick={handleDeleteClick}
+              handleEditClick={handleEditClick}
+            />
+          ))}
+        <PaginationActions
+          page={page}
+          count={state.codelogs.length}
+          onChangePage={handleChangePage}
+        />
       </Container>
       <AddButton handleClick={handleAddClick} />
     </div>
