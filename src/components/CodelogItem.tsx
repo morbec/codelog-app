@@ -1,14 +1,4 @@
-import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Collapse,
-  Fab,
-  IconButton,
-  Typography
-} from '@material-ui/core/'
+import { Avatar, Card, CardActions, CardContent, CardHeader, Collapse, Fab, IconButton, Typography } from '@material-ui/core/'
 import { green, red } from '@material-ui/core/colors'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -69,9 +59,11 @@ const CodelogItem = ({ codelog, handleDeleteClick, handleEditClick }) => {
           subheader={date}
         />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {tasks}
-          </Typography>
+          {tasks.split('\n').map((line, index) => (
+            <Typography key={index} variant="body2" color="textSecondary" component="p">
+              {line}
+            </Typography>
+          ))}
         </CardContent>
         <CardActions disableSpacing>
           <Fab
@@ -103,16 +95,20 @@ const CodelogItem = ({ codelog, handleDeleteClick, handleEditClick }) => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography variant="h6">Blockers:</Typography>
-            <Typography variant="body1" component="p">
-              {blockers}
-            </Typography>
+            {blockers.split('\n').map((line, index) => (
+              <Typography key={index} variant="body1" component="p">
+                {line}
+              </Typography>
+            ))}
             <br />
             <hr />
             <br />
             <Typography variant="h6">Today I learned:</Typography>
-            <Typography variant="body1" component="p">
-              {todayILearned}
-            </Typography>
+            {todayILearned.split('\n').map((line, index) => (
+              <Typography key={index} variant="body1" component="p">
+                {line}
+              </Typography>
+            ))}
           </CardContent>
         </Collapse>
       </Card>
