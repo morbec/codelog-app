@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/codelog-app/static/css/main.45e96922.chunk.css",
+    "main.js": "/codelog-app/static/js/main.e76e5d4c.chunk.js",
+    "main.js.map": "/codelog-app/static/js/main.e76e5d4c.chunk.js.map",
+    "runtime-main.js": "/codelog-app/static/js/runtime-main.124468b3.js",
+    "runtime-main.js.map": "/codelog-app/static/js/runtime-main.124468b3.js.map",
+    "static/js/2.1be7f3f3.chunk.js": "/codelog-app/static/js/2.1be7f3f3.chunk.js",
+    "static/js/2.1be7f3f3.chunk.js.map": "/codelog-app/static/js/2.1be7f3f3.chunk.js.map",
+    "index.html": "/codelog-app/index.html",
+    "precache-manifest.8a12aac3047627cde2d7256fd43b358b.js": "/codelog-app/precache-manifest.8a12aac3047627cde2d7256fd43b358b.js",
+    "service-worker.js": "/codelog-app/service-worker.js",
+    "static/css/main.45e96922.chunk.css.map": "/codelog-app/static/css/main.45e96922.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.124468b3.js",
+    "static/js/2.1be7f3f3.chunk.js",
+    "static/css/main.45e96922.chunk.css",
+    "static/js/main.e76e5d4c.chunk.js"
+  ]
+}
