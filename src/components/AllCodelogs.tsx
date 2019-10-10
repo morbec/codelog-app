@@ -49,7 +49,7 @@ const codelogReducer = (state: Codelogs, action: ActionTypes) => {
     case ALL_CODELOGS:
       return Object.assign({}, state, { codelogs: [...state.codelogs] })
     case ADD_NEW_CODELOG:
-      return { codelogs: [...state.codelogs, action.payload] }
+      return { codelogs: [action.payload, ...state.codelogs] }
     case DELETE_CODELOG:
       return Object.assign({}, state, {
         codelogs: [...state.codelogs.filter((codelog) => codelog.id !== action.payload)]

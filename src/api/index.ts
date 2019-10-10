@@ -18,7 +18,7 @@ export const generateId = (): number => {
 
 export const addNewCodelog = (codelog: Codelog): Codelog => {
   const codelogs = getAllCodelogs().codelogs
-  saveCodelog([...codelogs, codelog])
+  saveCodelog([codelog, ...codelogs])
   return codelog
 }
 
@@ -29,7 +29,6 @@ export const deleteAll = () => {
 export const deleteCodelog = (id: number) => {
   const codelogs = getAllCodelogs().codelogs
 
-  // if (codelogs.length === 0) throw new Error('Database is empty')
   if (!codelogs) throw new Error('Database is empty')
 
   const codelogIndex = codelogs.findIndex((codelog) => codelog.id === id)
