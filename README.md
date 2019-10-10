@@ -25,6 +25,10 @@ Things I plan to do implement the future:
 - improve tests
 - improve accessibility
 
+## Demo
+
+[Live demo](https://morbec.github.io/codelog-app/)
+
 ## License
 
 MIT License
