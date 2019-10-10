@@ -1,4 +1,4 @@
-import { IconButton } from '@material-ui/core'
+import { IconButton, Paper } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons'
 import PropTypes from 'prop-types'
@@ -9,7 +9,7 @@ export const ROWS_PER_PAGE = 3
 const useStyles = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
-    marginLeft: theme.spacing(2.5)
+    padding: theme.spacing(0.5)
   }
 }))
 
@@ -27,17 +27,23 @@ const PaginationActions = (props) => {
   }
 
   return (
-    <div className={classes.root}>
-      <IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
-        {theme.direction === 'ltr' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / ROWS_PER_PAGE) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
+    <div>
+      <Paper className={classes.root}>
+        <IconButton
+          onClick={handleBackButtonClick}
+          disabled={page === 0}
+          aria-label="previous page"
+        >
+          {theme.direction === 'ltr' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        </IconButton>
+        <IconButton
+          onClick={handleNextButtonClick}
+          disabled={page >= Math.ceil(count / ROWS_PER_PAGE) - 1}
+          aria-label="next page"
+        >
+          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        </IconButton>
+      </Paper>
     </div>
   )
 }

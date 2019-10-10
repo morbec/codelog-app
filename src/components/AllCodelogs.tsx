@@ -105,6 +105,8 @@ const AllCodelogs = (): JSX.Element => {
               handleEditClick={handleEditClick}
             />
           ))}
+      </Container>
+      <Container style={{ paddingTop: 7.5 }}>
         <PaginationActions
           page={page}
           count={state.codelogs.length}
