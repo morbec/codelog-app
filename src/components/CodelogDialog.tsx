@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react'
 import { generateId } from '../api'
 
 const CodelogDialog = ({ display, setDisplayDialog, handleClick, codelog }) => {
+  const [canSave, setCanSave] = useState(true)
   const [open, setOpen] = useState(display)
   const [state, setState] = useState({
     title: '',
@@ -24,6 +25,10 @@ const CodelogDialog = ({ display, setDisplayDialog, handleClick, codelog }) => {
       setState({ ...codelog })
     }
   }, [codelog])
+
+  useEffect(() => {
+    setCanSave(!(state.title.trim().length > 0 && state.tasks.trim().length > 0))
+  }, [state])
 
   const handleSave = () => {
     codelog = !codelog ? { ...state, id: generateId(), date: new Date().toString() } : { ...state }
@@ -95,7 +100,7 @@ const CodelogDialog = ({ display, setDisplayDialog, handleClick, codelog }) => {
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSave} color="primary">
+        <Button onClick={handleSave} color="primary" disabled={canSave}>
           Save
         </Button>
       </DialogActions>
