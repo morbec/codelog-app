@@ -1,6 +1,6 @@
 {
   "name": "codelog-app",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "homepage": "https://morbec.github.io/codelog-app/",
   "private": true,
   "dependencies": {
