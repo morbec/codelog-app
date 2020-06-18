@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/codelog-app/static/css/main.45e96922.chunk.css",
-    "main.js": "/codelog-app/static/js/main.faa3d774.chunk.js",
-    "main.js.map": "/codelog-app/static/js/main.faa3d774.chunk.js.map",
+    "main.js": "/codelog-app/static/js/main.9c3d20ae.chunk.js",
+    "main.js.map": "/codelog-app/static/js/main.9c3d20ae.chunk.js.map",
     "runtime-main.js": "/codelog-app/static/js/runtime-main.842298d3.js",
     "runtime-main.js.map": "/codelog-app/static/js/runtime-main.842298d3.js.map",
-    "static/js/2.97bff184.chunk.js": "/codelog-app/static/js/2.97bff184.chunk.js",
-    "static/js/2.97bff184.chunk.js.map": "/codelog-app/static/js/2.97bff184.chunk.js.map",
+    "static/js/2.4dc7d72e.chunk.js": "/codelog-app/static/js/2.4dc7d72e.chunk.js",
+    "static/js/2.4dc7d72e.chunk.js.map": "/codelog-app/static/js/2.4dc7d72e.chunk.js.map",
     "index.html": "/codelog-app/index.html",
-    "precache-manifest.6869db5acef5de519ae3a4282fdc07ff.js": "/codelog-app/precache-manifest.6869db5acef5de519ae3a4282fdc07ff.js",
+    "precache-manifest.383d82c725a7e53f4c12a9d8fd7f9556.js": "/codelog-app/precache-manifest.383d82c725a7e53f4c12a9d8fd7f9556.js",
     "service-worker.js": "/codelog-app/service-worker.js",
     "static/css/main.45e96922.chunk.css.map": "/codelog-app/static/css/main.45e96922.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.842298d3.js",
-    "static/js/2.97bff184.chunk.js",
+    "static/js/2.4dc7d72e.chunk.js",
     "static/css/main.45e96922.chunk.css",
-    "static/js/main.faa3d774.chunk.js"
+    "static/js/main.9c3d20ae.chunk.js"
   ]
 }
