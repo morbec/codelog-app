@@ -29,8 +29,6 @@ Things I plan to do implement the future:
 
 [Live demo](https://morbec.github.io/codelog-app/)
 
-[Deployed](https://codelog-app.surge.sh) to [surge.sh](https://surge.sh).
-
 ## License
 
 MIT License
