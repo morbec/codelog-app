@@ -1,10 +1,9 @@
-// import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core/'
+import React from 'react'
 import { AppBar, Toolbar, Typography } from '@material-ui/core/'
 import { createStyles, makeStyles, styled, Theme } from '@material-ui/core/styles'
-// import Add from '@material-ui/icons/Add'
-import React from 'react'
+import CSVExporter from './CSVExporter'
 
-// const useStyles = makeStyles((theme: Theme) =>
+//#region  useStyles
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -19,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 )
+//#endregion
 
 const NavbarStyled = styled(AppBar)({
   backgroundColor: '#FE6B8B'
@@ -34,10 +34,7 @@ export default function Navbar() {
           <Typography variant="h6" className={classes.title}>
             Codelogs
           </Typography>
-          {/* <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="add">
-            <Add onClick={() => handleAddClick()} />
-          </IconButton> */}
-          {/* <Button color="inherit">Add</Button> */}
+          <CSVExporter />
         </Toolbar>
       </NavbarStyled>
     </div>
